@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const TOKEN = "BURAYA_TMDB_TOKEN";
+const TOKEN = "BURAYA_TOKEN";
 
 const options = {
   headers: {
@@ -26,14 +26,4 @@ export const searchMovies = async (query) => {
 export const getMovieDetails = async (id) => {
   const res = await axios.get(`${BASE_URL}/movie/${id}`, options);
   return res.data;
-};
-
-export const getMovieCast = async (id) => {
-  const res = await axios.get(`${BASE_URL}/movie/${id}/credits`, options);
-  return res.data.cast;
-};
-
-export const getMovieReviews = async (id) => {
-  const res = await axios.get(`${BASE_URL}/movie/${id}/reviews`, options);
-  return res.data.results;
 };
