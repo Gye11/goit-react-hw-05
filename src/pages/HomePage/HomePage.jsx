@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTrending } from "../../services/api";
+import { getTrendingMovies } from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
 
 function HomePage() {
@@ -7,7 +7,7 @@ function HomePage() {
 
   useEffect(() => {
     async function fetchMovies() {
-      const data = await getTrending();
+      const data = await getTrendingMovies();
       setMovies(data);
     }
 
