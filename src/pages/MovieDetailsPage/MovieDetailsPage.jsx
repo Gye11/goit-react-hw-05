@@ -1,39 +1,37 @@
-import { useParams, Link, Outlet, useLocation } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
-import { getMovieDetails } from "../../services/api";
+/* NAVIGATION */
 
-export default function MovieDetailsPage() {
-  const { movieId } = useParams();
-  const location = useLocation();
-  const backLink = useRef(location.state ?? "/movies");
+nav {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  background: white;
+}
 
-  const [movie, setMovie] = useState(null);
+nav a {
+  margin-right: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
 
-  useEffect(() => {
-    getMovieDetails(movieId).then(setMovie);
-  }, [movieId]);
+nav a:hover {
+  color: red;
+}
 
-  if (!movie) return <p>Loading...</p>;
 
-  return (
-    <div>
-      <Link to={backLink.current}>Go back</Link>
+/* MOVIE DETAILS */
 
-      <h2>{movie.title}</h2>
-      <p>{movie.overview}</p>
+.movieDetails {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
 
-      <h3>Additional information</h3>
+.moviePoster {
+  width: 250px;
+}
 
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
-
-      <Outlet />
-    </div>
-  );
+.additional {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
 }

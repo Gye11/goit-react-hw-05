@@ -7,6 +7,7 @@ import MovieDetailsPage from "./pages/MovieDetailsPage/MovieDetailsPage.jsx";
 
 import MovieCast from "./components/MovieCast/MovieCast.jsx";
 import MovieReviews from "./components/MovieReviews/MovieReviews.jsx";
+import "./App.css";
 
 function App() {
   return (
