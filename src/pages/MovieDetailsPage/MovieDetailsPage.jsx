@@ -1,65 +1,55 @@
+import { useEffect, useState } from "react";
 import { useParams, Link, Outlet, useLocation } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
 import { getMovieDetails } from "../../services/api";
 
-export default function MovieDetailsPage() {
+function MovieDetailsPage() {
   const { movieId } = useParams();
   const location = useLocation();
-  const backLink = useRef(location.state ?? "/movies");
+
+  const backLink = location.state?.from ?? "/";
 
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    getMovieDetails(movieId).then(setMovie);
+    async function fetchMovie() {
+      const data = await getMovieDetails(movieId);
+      setMovie(data);
+    }
+
+    fetchMovie();
   }, [movieId]);
 
-  if (!movie) return <p>Loading...</p>;
-
-  const posterUrl = movie.poster_path
-    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-    : "https://via.placeholder.com/300x450";
+  if (!movie) return null;
 
   return (
-    <div>
-      <Link to={backLink.current}>Go back</Link>
+    <>
+      <Link to={backLink}>Go back</Link>
 
-      <div className="movieDetails">
-        <img className="moviePoster" src={posterUrl} alt={movie.title} />
+      <h2>{movie.title}</h2>
 
-        <div className="movieInfo">
-          <h2>
-            {movie.title} ({movie.release_date?.slice(0, 4)})
-          </h2>
+      <p>User Score: {movie.vote_average}</p>
 
-          <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
+      <h3>Overview</h3>
+      <p>{movie.overview}</p>
 
-          <h3>Overview</h3>
-          <p>{movie.overview}</p>
+      <h3>Genres</h3>
+      <p>{movie.genres.map((g) => g.name).join(" ")}</p>
 
-          <h3>Genres</h3>
-          <p>{movie.genres.map((g) => g.name).join(" ")}</p>
-        </div>
-      </div>
+      <h3>Additional information</h3>
 
-      <div className="additional">
-        <h3>Additional information</h3>
+      <ul>
+        <li>
+          <Link to="cast">Cast</Link>
+        </li>
 
-        <ul>
-          <li>
-            <Link to="cast" state={location.state}>
-              Cast
-            </Link>
-          </li>
-
-          <li>
-            <Link to="reviews" state={location.state}>
-              Reviews
-            </Link>
-          </li>
-        </ul>
-      </div>
+        <li>
+          <Link to="reviews">Reviews</Link>
+        </li>
+      </ul>
 
       <Outlet />
-    </div>
+    </>
   );
 }
+
+export default MovieDetailsPage;
