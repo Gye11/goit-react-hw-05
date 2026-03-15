@@ -9,19 +9,29 @@ function MoviesPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!query.trim()) {
+      return;
+    }
+
     const data = await searchMovies(query);
     setMovies(data);
   };
 
   return (
-    <>
+    <div style={{ paddingLeft: "20px" }}>
       <form onSubmit={handleSubmit}>
-        <input value={query} onChange={(e) => setQuery(e.target.value)} />
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search movies"
+        />
+
         <button type="submit">Search</button>
       </form>
 
       <MovieList movies={movies} />
-    </>
+    </div>
   );
 }
 

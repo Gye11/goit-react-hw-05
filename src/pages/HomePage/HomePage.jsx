@@ -16,7 +16,7 @@ function HomePage() {
 
   return (
     <>
-      <h2>Trending today</h2>
+      <h2 className="title">Trending today</h2>
       <MovieList movies={movies} />
     </>
   );

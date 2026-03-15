@@ -149,6 +149,7 @@ ul {
 
 li {
   margin-bottom: 6px;
+  font-size: 14px;
 }
 
 /* MOVIE DETAILS */
@@ -172,4 +173,13 @@ li {
 .additional {
   padding: 20px 40px;
   border-top: 1px solid #ddd;
+}
+
+.title {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.searchBox {
+  margin-left: 20px;
 }
