@@ -26,7 +26,7 @@ export default function MovieDetailsPage() {
       <div className="movieDetails">
         <img className="moviePoster" src={posterUrl} alt={movie.title} />
 
-        <div>
+        <div className="movieInfo">
           <h2>
             {movie.title} ({movie.release_date?.slice(0, 4)})
           </h2>

@@ -113,41 +113,62 @@ code {
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #fafafa;
 }
 
+/* NAVBAR */
+
 nav {
-  padding: 15px;
+  display: flex;
+  gap: 20px;
+  padding: 15px 40px;
   border-bottom: 1px solid #ddd;
   background: white;
 }
 
 nav a {
-  margin-right: 20px;
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none;
-  color: #333;
+  color: black;
 }
 
 nav a:hover {
   color: red;
 }
 
-ul {
-  padding-left: 20px;
+/* HOME PAGE */
+
+h1 {
+  margin-left: 40px;
 }
+
+ul {
+  margin-left: 40px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+/* MOVIE DETAILS */
 
 .movieDetails {
   display: flex;
   gap: 30px;
-  margin-top: 20px;
+  padding: 20px 40px;
 }
 
 .moviePoster {
   width: 250px;
 }
 
+.movieInfo {
+  max-width: 600px;
+}
+
+/* ADDITIONAL */
+
 .additional {
-  margin-top: 20px;
+  padding: 20px 40px;
   border-top: 1px solid #ddd;
-  padding-top: 10px;
 }
