@@ -97,3 +97,5 @@ function MovieDetailsPage() {
     </div>
   );
 }
+
+export default MovieDetailsPage;
