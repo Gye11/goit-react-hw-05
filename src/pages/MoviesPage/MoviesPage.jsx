@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { searchMovies } from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
 
@@ -19,15 +20,41 @@ function MoviesPage() {
 
   return (
     <div style={{ paddingLeft: "20px" }}>
-      <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
+      <style>{`
+        .search-form {
+          margin-bottom: 20px;
+          display: flex;
+          align-items: center;
+        }
+        .search-input {
+          width: 320px;
+          font-size: 16px;
+        }
+        .search-btn {
+          margin-left: 4px;
+          padding: 2px 12px;
+          font-size: 16px;
+          border: 1px solid #bbb;
+          border-radius: 4px;
+          background: #f5f5f5;
+          color: #222;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+        .search-btn:hover {
+          background: #007bff;
+          color: #fff;
+        }
+      `}</style>
+      <form onSubmit={handleSubmit} className="search-form">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search movies"
-          style={{ width: "320px", fontSize: "16px" }}
+          className="search-input"
         />
-        <button type="submit" style={{ marginLeft: 4 }}>
+        <button type="submit" className="search-btn">
           Search
         </button>
       </form>
