@@ -47,23 +47,21 @@ function MovieDetailsPage() {
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
-            position: "relative",
           }}
         >
           <button
             onClick={() => window.history.back()}
             style={{
-              marginBottom: 8,
+              marginBottom: 6,
               background: "#fff",
               border: "1px solid #bbb",
-              borderRadius: 12,
-              padding: "2px 10px",
-              fontSize: 14,
-              color: "#333",
+              borderRadius: 6,
+              padding: "2px 8px",
+              fontSize: 13,
+              color: "#222",
               cursor: "pointer",
-              zIndex: 2,
               fontWeight: 400,
-              boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
+              boxShadow: "none",
             }}
           >
             &larr; Go back

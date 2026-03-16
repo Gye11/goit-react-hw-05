@@ -22,28 +22,31 @@ function MoviesPage() {
     <div style={{ paddingLeft: "20px" }}>
       <style>{`
         .search-form {
-          margin-bottom: 20px;
+          margin: 18px 0 20px 0;
           display: flex;
           align-items: center;
         }
         .search-input {
           width: 320px;
           font-size: 16px;
+          border: 2px solid #bbb;
+          border-radius: 4px;
+          padding: 4px 8px;
+          transition: border-color 0.2s;
+        }
+        .search-input:focus {
+          border-color: #3399ff;
+          outline: none;
         }
         .search-btn {
           margin-left: 4px;
-          padding: 2px 12px;
+          padding: 4px 16px;
           font-size: 16px;
           border: 1px solid #bbb;
           border-radius: 4px;
           background: #f5f5f5;
           color: #222;
           cursor: pointer;
-          transition: background 0.2s;
-        }
-        .search-btn:hover {
-          background: #007bff;
-          color: #fff;
         }
       `}</style>
       <form onSubmit={handleSubmit} className="search-form">
