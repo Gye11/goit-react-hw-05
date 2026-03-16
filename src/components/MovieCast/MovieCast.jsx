@@ -21,7 +21,6 @@ function MovieCast() {
         setLoading(false);
       }
     }
-
     fetchCast();
   }, [movieId]);
 
@@ -33,13 +32,13 @@ function MovieCast() {
       style={{
         listStyle: "none",
         padding: 0,
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "20px",
       }}
     >
       {cast.map((actor) => (
-        <li key={actor.id} style={{ textAlign: "center", width: "150px" }}>
+        <li
+          key={actor.id}
+          style={{ textAlign: "center", marginBottom: "20px" }}
+        >
           <img
             src={
               actor.profile_path
