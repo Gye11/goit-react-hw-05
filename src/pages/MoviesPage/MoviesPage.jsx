@@ -19,15 +19,47 @@ function MoviesPage() {
 
   return (
     <div style={{ paddingLeft: "20px" }}>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          marginBottom: "20px",
+          display: "flex",
+          gap: "10px",
+          alignItems: "center",
+        }}
+      >
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search movies"
+          style={{
+            padding: "10px",
+            fontSize: "16px",
+            border: "1px solid #ccc",
+            borderRadius: "4px",
+            width: "300px",
+            outline: "none",
+          }}
         />
 
-        <button type="submit">Search</button>
+        <button
+          type="submit"
+          style={{
+            padding: "10px 20px",
+            fontSize: "16px",
+            backgroundColor: "#007bff",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+            transition: "background-color 0.3s",
+          }}
+          onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+          onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+        >
+          Search
+        </button>
       </form>
 
       <MovieList movies={movies} />
