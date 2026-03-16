@@ -37,7 +37,13 @@ function MovieCast() {
       {cast.map((actor) => (
         <li
           key={actor.id}
-          style={{ textAlign: "center", marginBottom: "20px" }}
+          style={{
+            textAlign: "left",
+            marginBottom: "20px",
+            display: "flex",
+            alignItems: "flex-start",
+            gap: "16px",
+          }}
         >
           <img
             src={
@@ -51,14 +57,17 @@ function MovieCast() {
               height: "150px",
               objectFit: "cover",
               borderRadius: "8px",
+              flexShrink: 0,
             }}
           />
-          <p style={{ margin: "5px 0", fontSize: "14px" }}>{actor.name}</p>
-          {actor.character && (
-            <p style={{ margin: 0, fontSize: "12px", color: "#666" }}>
-              Rol: {actor.character}
-            </p>
-          )}
+          <div>
+            <p style={{ margin: "5px 0", fontSize: "14px" }}>{actor.name}</p>
+            {actor.character && (
+              <p style={{ margin: 0, fontSize: "12px", color: "#666" }}>
+                Rol: {actor.character}
+              </p>
+            )}
+          </div>
         </li>
       ))}
     </ul>

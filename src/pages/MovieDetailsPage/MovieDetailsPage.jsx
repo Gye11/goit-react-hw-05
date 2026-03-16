@@ -15,7 +15,6 @@ function MovieDetailsPage() {
       const data = await getMovieDetails(movieId);
       setMovie(data);
     }
-
     fetchMovie();
   }, [movieId]);
 
@@ -30,29 +29,39 @@ function MovieDetailsPage() {
         textAlign: "left",
       }}
     >
-      <Link
-        to={backLink}
-        style={{
-          display: "inline-block",
-          marginBottom: 20,
-          color: "#4B2FC5",
-          textDecoration: "underline",
-        }}
-      >
-        &larr; Go back
-      </Link>
-      <div style={{ display: "flex", gap: 24 }}>
-        {movie.poster_path && (
-          <img
-            src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-            alt={movie.title}
+      <div style={{ display: "flex", gap: 24, alignItems: "flex-start" }}>
+        <div style={{ position: "relative" }}>
+          <button
+            onClick={() => window.history.back()}
             style={{
-              width: 200,
-              borderRadius: 8,
-              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+              position: "absolute",
+              top: -12,
+              left: -12,
+              background: "#fff",
+              border: "1px solid #ccc",
+              borderRadius: 4,
+              padding: "2px 8px",
+              fontSize: 13,
+              color: "#333",
+              cursor: "pointer",
+              zIndex: 2,
+              boxShadow: "0 1px 4px rgba(0,0,0,0.06)",
             }}
-          />
-        )}
+          >
+            &larr; Go back
+          </button>
+          {movie.poster_path && (
+            <img
+              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+              alt={movie.title}
+              style={{
+                width: 200,
+                borderRadius: 8,
+                boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+              }}
+            />
+          )}
+        </div>
         <div>
           <h2 style={{ marginTop: 0 }}>
             {movie.title}{" "}
@@ -88,5 +97,3 @@ function MovieDetailsPage() {
     </div>
   );
 }
-
-export default MovieDetailsPage;
