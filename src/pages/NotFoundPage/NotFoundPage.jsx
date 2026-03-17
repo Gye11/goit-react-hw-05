@@ -1,19 +1,27 @@
-import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import MovieList from "../../components/MovieList/MovieList";
+import { getTrendingMovies } from "../../services/api";
 
-function MovieList({ movies }) {
-  const location = useLocation();
+function NotFoundPage() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    async function fetchMovies() {
+      const data = await getTrendingMovies();
+      setMovies(data);
+    }
+    fetchMovies();
+  }, []);
 
   return (
-    <ul>
-      {movies.map((movie) => (
-        <li key={movie.id}>
-          <Link to={`/movies/${movie.id}`} state={{ from: location }}>
-            {movie.title}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <div style={{ paddingLeft: "20px" }}>
+      <h2>404 - Sayfa Bulunamadı</h2>
+      <p>
+        Aradığınız sayfa bulunamadı. Trending filmleri görüntüleyebilirsiniz:
+      </p>
+      <MovieList movies={movies} />
+    </div>
   );
 }
 
-export default MovieList;
+export default NotFoundPage;

@@ -1,21 +1,35 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { searchMovies } from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
 
 function MoviesPage() {
-  const [query, setQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get("query") || "");
   const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const queryParam = searchParams.get("query");
+    if (queryParam) {
+      setQuery(queryParam);
+      handleSearch(queryParam);
+    }
+  }, [searchParams]);
+
+  const handleSearch = async (searchQuery) => {
+    if (!searchQuery.trim()) {
+      return;
+    }
+    const data = await searchMovies(searchQuery);
+    setMovies(data);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!query.trim()) {
       return;
     }
-
-    const data = await searchMovies(query);
-    setMovies(data);
+    setSearchParams({ query });
   };
 
   return (

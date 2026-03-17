@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, Link, Outlet, useLocation } from "react-router-dom";
 import { getMovieDetails } from "../../services/api";
 
 function MovieDetailsPage() {
   const { movieId } = useParams();
   const location = useLocation();
-  const backLink = location.state?.from ?? "/";
+  const backLinkRef = useRef(location.state?.from ?? "/");
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
@@ -49,8 +49,8 @@ function MovieDetailsPage() {
             alignItems: "flex-start",
           }}
         >
-          <button
-            onClick={() => window.history.back()}
+          <Link
+            to={backLinkRef.current}
             style={{
               marginBottom: 6,
               background: "#fff",
@@ -62,10 +62,12 @@ function MovieDetailsPage() {
               cursor: "pointer",
               fontWeight: 400,
               boxShadow: "none",
+              textDecoration: "none",
+              display: "inline-block",
             }}
           >
             &larr; Go back
-          </button>
+          </Link>
           {movie.poster_path && (
             <img
               src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
